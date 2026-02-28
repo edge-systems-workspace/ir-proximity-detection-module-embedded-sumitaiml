@@ -1,29 +1,24 @@
 #include <Arduino.h>
 /**
  * @file main.cpp
- * @brief Embedded Obstacle Detection System using IR Sensor
+ * @brief Embedded Obstacle Detection System using an IR proximity sensor.
  * @author SUMIT KUMAR SINGH
- * @date 2026-02-28
+ * @date 1990-01-01
  *
  * @details
  * Reads digital input from an IR proximity sensor connected to a digital pin
- * and prints obstacle detection status over serial.
- *
- * @note This example assumes the IR sensor's digital output is LOW when an
- * obstacle is detected (active LOW). Change the logic in loop() if your
- * sensor behaves differently.
+ * and prints obstacle detection status over serial. The IR sensor used in this
+ * example is assumed to be active LOW (sensor outputs LOW when an obstacle
+ * is detected). Modify logic if your sensor behaves differently.
  */
 
-/** IR sensor digital pin (D2) */
 const uint8_t IR_PIN = 2;
-
-/** Stores the last read state of the IR sensor (HIGH/LOW) */
 int sensorState = HIGH;
 
 /**
- * @brief Initialize serial and IR input pin
+ * @brief Initialize serial and IR input pin.
  *
- * Initializes Serial at 9600 baud and configures the IR pin as an INPUT.
+ * Sets up Serial at 9600 baud and configures the IR pin as an input.
  */
 void setup() {
     Serial.begin(9600);
@@ -32,11 +27,10 @@ void setup() {
 }
 
 /**
- * @brief Main loop: read sensor and print detection status
+ * @brief Main loop: read sensor and print detection status.
  *
  * Reads the digital state from the IR sensor and prints either
- * "Obstacle Detected" or "No Obstacle". Adds a short delay to avoid
- * spamming the serial output.
+ * "Obstacle Detected" or "No Obstacle" with a short delay between readings.
  */
 void loop() {
     sensorState = digitalRead(IR_PIN);
@@ -47,5 +41,5 @@ void loop() {
         Serial.println("No Obstacle");
     }
 
-    delay(300); // 300ms between readings
+    delay(300);
 }
